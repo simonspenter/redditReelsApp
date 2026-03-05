@@ -30,7 +30,7 @@ IG_USER_ID = os.getenv("IG_USER_ID")
 ACCESS_TOKEN = os.getenv("META_ACCESS_TOKEN")  # fixed to match services
 
 # Toggle publishing destinations
-PUBLISH_TO_FB = False
+PUBLISH_TO_FB = True
 PUBLISH_TO_IG = False
 
 # =============== MAIN PIPELINE ===============
