@@ -4,7 +4,7 @@ from moviepy.editor import VideoFileClip, CompositeVideoClip, concatenate_videoc
 from moviepy.video.tools.subtitles import SubtitlesClip
 from utils.textclip import make_textclip_pillow
 
-VIDEOS_DIR = "stock-videos"
+VIDEOS_DIR = os.path.join("assets", "stock-videos")
 
 def build_final_video(output_dir, audio_clip, teaser_end_time, subtitles_data, thumbnail_path, filename="final_video.mp4"):
     """
