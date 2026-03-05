@@ -24,6 +24,7 @@ def get_page_access_token():
         r.raise_for_status()
 
     data = r.json().get("data", [])
+    print("✅ Pages returned from /me/accounts:", [(p.get("id"), p.get("name")) for p in data])
     for page in data:
         if page["id"] == FB_PAGE_ID:
             return page["access_token"]
