@@ -16,13 +16,19 @@ def get_page_access_token():
         params={"fields": "id,access_token", "access_token": META_USER_ACCESS_TOKEN},
         timeout=30,
     )
-    r.raise_for_status()
 
-    for page in r.json().get("data", []):
+    # 👇 Add this block
+    if not r.ok:
+        print("❌ /me/accounts error status:", r.status_code)
+        print("❌ /me/accounts error body:", r.text)
+        r.raise_for_status()
+
+    data = r.json().get("data", [])
+    for page in data:
         if page["id"] == FB_PAGE_ID:
             return page["access_token"]
 
-    raise RuntimeError("Page not found in /me/accounts. Check FB_PAGE_ID and token.")
+    raise RuntimeError("Page not found in /me/accounts. Check FB_PAGE_ID and token user.")
 
 def publish_to_facebook(video_url, caption, title=None):
     """
