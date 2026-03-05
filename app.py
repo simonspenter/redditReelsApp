@@ -75,6 +75,11 @@ print("📦 Enqueued for posting (ready queue):", output_dir)
 
 
 # 5. Publish
+# Upload once to Azure
+azure_url = upload_to_azure(final_path, public=False)
+print(f"☁️ Video uploaded to Azure: {azure_url}")
+
+# Publish
 if PUBLISH_TO_FB:
     publish_to_facebook(azure_url, caption_final)
 
