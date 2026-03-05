@@ -4,10 +4,13 @@ __pycache__/
 output-content/
 temp/
 logs/
-*.mp4
-*.wav
-*.mp3
-*.png
-*.jpg
-*.jpeg
 .DS_Store
+
+# generated media only (keep stock-videos tracked if you want)
+output-content/**/*.mp4
+output-content/**/*.png
+output-content/**/*.jpg
+output-content/**/*.jpeg
+
+# ignore only the too-large stock videos:
+stock-videos/minecraft_1.mp4
