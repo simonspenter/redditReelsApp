@@ -22,7 +22,7 @@ def _load_font(font_path: Path, size: int) -> ImageFont.FreeTypeFont | ImageFont
 
 def make_textclip_pillow(
     txt: str,
-    fontsize: int = 60,
+    fontsize: int = 90,
     bold: bool = True,
     color: str = "white",
     stroke_color: str = "black",
