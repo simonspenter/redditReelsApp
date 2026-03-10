@@ -51,9 +51,7 @@ def generate_story_and_caption(client, output_dir):
         messages=[
             {
                 "role": "system",
-                "content": (
-                    "You are selecting the best r/AskReddit question candidate."
-                )
+                "content": "You are selecting the best r/AskReddit question candidate."
             },
             {
                 "role": "user",
@@ -108,34 +106,8 @@ def generate_story_and_caption(client, output_dir):
     )
     story_text = story_response.choices[0].message.content.strip()
 
-    # 4. Generate hashtags
-    caption_response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {
-                "role": "system",
-                "content": "You write short hashtag sets for social media story videos."
-            },
-            {
-                "role": "user",
-                "content": (
-                    f"Based on this story and question:\n\n"
-                    f"Question: {teaser_question}\n"
-                    f"Story: {story_text}\n\n"
-                    "Generate exactly 3 relevant hashtags.\n"
-                    "- Only output hashtags\n"
-                    "- Space separated\n"
-                    "- No explanation"
-                )
-            }
-        ]
-    )
-
-    extra_tags = caption_response.choices[0].message.content.strip()
-
-    # Fixed + dynamic hashtags
-    base_tags = "#reddit #askreddit #redditstories #storytime #storytelling #storyteller"
-    hashtags = f"{base_tags} {extra_tags}"
+    # 4. Fixed hashtags only
+    hashtags = "#reddit #askreddit #redditstories"
 
     # Final caption
     caption_final = f"Part 1. {teaser_question}\n{hashtags}"
@@ -147,5 +119,6 @@ def generate_story_and_caption(client, output_dir):
 
     print(f"📝 Caption saved: {caption_path}")
     print(f"❓ Chosen question: {teaser_question}")
+    print(f"📖 Story: {story_text}")
 
     return story_text, caption_final, teaser_question
